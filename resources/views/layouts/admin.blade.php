@@ -33,7 +33,9 @@
                 <i class="fas fa-fw fa-bars"></i>
             </button>
 
-            <a class="c-header-brand d-lg-none" href="#">{{ trans('panel.site_title') }}</a>
+            <a class="c-header-brand d-lg-none" href="#">
+              {{ trans('panel.site_title') }}
+            </a>
 
             <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
                 <i class="fas fa-fw fa-bars"></i>
@@ -52,6 +54,12 @@
                         </div>
                     </li>
                 @endif
+                <li class="c-header-nav-item dropdown d-md-down-none">
+                    <a href="{{url('/')}}" target="blank" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-home"></i>
+                      {{ trans('global.goSite') }}
+                    </a>
+                </li>
 
 
             </ul>
@@ -105,7 +113,9 @@
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+    {{-- <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script> --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/26.0.0/classic/ckeditor.js"></script>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>

@@ -17,16 +17,22 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => [
+            'name'          => [
                 'string',
                 'min:3',
                 'required',
                 'unique:categories,name,' . request()->route('category')->id,
             ],
-            'description' => [
+            'description'   => [
                 'string',
                 'min:3',
                 'required',
+            ],
+            'display_order' => [
+                'required',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
             ],
         ];
     }

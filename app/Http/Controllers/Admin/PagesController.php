@@ -13,6 +13,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+Use App\Helpers\SiteHelper;
 
 class PagesController extends Controller
 {
@@ -52,6 +53,8 @@ class PagesController extends Controller
             Media::whereIn('id', $media)->update(['model_id' => $page->id]);
         }
 
+        SiteHelper::createSitemap();
+
         return redirect()->route('admin.pages.index');
     }
 
@@ -87,6 +90,8 @@ class PagesController extends Controller
                 $page->addMedia(storage_path('tmp/uploads/' . $file))->toMediaCollection('photo');
             }
         }
+
+        SiteHelper::createSitemap();
 
         return redirect()->route('admin.pages.index');
     }

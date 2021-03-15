@@ -1,6 +1,18 @@
 <?php
 
 return [
+
+    'goSite'                               => 'Vai al sito',
+
+    'configPanel'                          => 'Pannello di configurazione',
+    'configColor'                          => 'Aspetto sito (colore):',
+    'configSiteColumns'                    => 'Suddivisione pagina:',
+    'configStatistics'                     => 'Visualizza statistiche in prima pagina:',
+    'configNewsNumber'                     => 'Numero massimo di news visibili in homepage:',
+    'configMenuRows'                       => 'Menu in alto su due righe:',
+    'saveConfig'                           => 'Attiva la modifica',
+    'modifySuccess'                        => 'Modifica effettuata con successo',
+
     'actions'                              => 'Azioni',
     'add'                                  => 'Aggiungi nuovo',
     'allRightsReserved'                    => 'Tutti i diritti riservati.',
@@ -10,7 +22,7 @@ return [
     'dashboard'                            => 'Dashboard',
     'delete'                               => 'Elimina',
     'downloadFile'                         => 'Scarica file',
-    'edit'                                 => 'Modifca',
+    'edit'                                 => 'Modifica',
     'emailVerificationSuccess'             => 'Indirizzo email verificato con successo',
     'entries'                              => 'Inserimenti',
     'filterDate'                           => 'Filtra per data',
@@ -21,7 +33,7 @@ return [
     'login_email'                          => 'Email',
     'login_password'                       => 'Password',
     'login_password_confirmation'          => 'Conferma nuova password',
-    'logout'                               => 'Logout',
+    'logout'                               => 'Esci',
     'month'                                => 'Mese',
     'no'                                   => 'No',
     'pleaseSelect'                         => 'Seleziona',

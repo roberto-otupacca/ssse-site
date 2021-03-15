@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'SSSE',
+    'site_title' => 'SSSE - Admin Sito',
 ];

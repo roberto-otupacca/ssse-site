@@ -3,20 +3,21 @@
 @can('file_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.files.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.file.title_singular') }}
+            <h2 class="d-inline-block align-middle">{{ trans('cruds.file.title_singular') }}</h2>
+            <a class="btn btn-success float-right" href="{{ route('admin.files.create') }}">
+                {{ trans('global.add') }} 
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
-    <div class="card-header">
+    {{-- <div class="card-header">
         {{ trans('cruds.file.title_singular') }} {{ trans('global.list') }}
-    </div>
+    </div> --}}
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-File">
+            <table class=" table table-sm table-striped table-hover datatable datatable-File">
                 <thead>
                     <tr>
                         <th width="10">
@@ -30,6 +31,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.pages') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.file.fields.news') }}
                         </th>
                         <th>
                             {{ trans('cruds.file.fields.category') }}
@@ -50,7 +54,7 @@
                         <td>
                         </td>
                         <td>
-                            <select class="search">
+                            <select class="search" style="width: 200px !important;">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($pages as $key => $item)
                                     <option value="{{ $item->title }}">{{ $item->title }}</option>
@@ -58,7 +62,15 @@
                             </select>
                         </td>
                         <td>
-                            <select class="search">
+                            <select class="search" style="width: 200px !important;">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($news as $key => $item)
+                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="search" style="width: 100px !important;">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($categories as $key => $item)
                                     <option value="{{ $item->name }}">{{ $item->name }}</option>
@@ -66,7 +78,7 @@
                             </select>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            {{-- <input class="search" type="text" placeholder="{{ trans('global.search') }}"> --}}
                         </td>
                         <td>
                         </td>
@@ -90,6 +102,11 @@
                             </td>
                             <td>
                                 @foreach($file->pages as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title . ' ('. $item->slug . ')' }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($file->news as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
                             </td>
@@ -100,25 +117,32 @@
                                 {{ $file->display_order ?? '' }}
                             </td>
                             <td>
-                                @can('file_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.files.show', $file->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                                <div class="btn-group" role="group">
+                                    @can('file_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.files.show', $file->id) }}">
+                                            <i class="fas fa-info fa-sm"></i>
+                                            {{-- {{ trans('global.view') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('file_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.files.edit', $file->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                    @can('file_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.files.edit', $file->id) }}">
+                                            <i class="far fa-edit fa-sm"></i>
+                                            {{-- {{ trans('global.edit') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('file_delete')
-                                    <form action="{{ route('admin.files.destroy', $file->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
+                                    @can('file_delete')
+                                        <form action="{{ route('admin.files.destroy', $file->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            {{-- <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}"> --}}
+                                            <button type="submit"  class="btn btn-xs btn-danger" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">
+                                                <i class="far fa-trash-alt fa-sm"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
 
                             </td>
 

@@ -33,6 +33,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.file.fields.slug') }}
+                        </th>
+                        <td>
+                            {{ $file->slug }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.file.fields.file') }}
                         </th>
                         <td>
@@ -49,7 +57,17 @@
                         </th>
                         <td>
                             @foreach($file->pages as $key => $pages)
-                                <span class="label label-info">{{ $pages->title }}</span>
+                                <span class="label label-info">{{ $pages->title . ' (' . $pages->slug . ')' }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.file.fields.news') }}
+                        </th>
+                        <td>
+                            @foreach($file->news as $key => $news)
+                                <span class="label label-info">{{ $news->title }}</span>
                             @endforeach
                         </td>
                     </tr>

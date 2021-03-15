@@ -20,13 +20,14 @@ class FilesApiController extends Controller
     {
         abort_if(Gate::denies('file_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new FileResource(File::with(['pages', 'category'])->get());
+        return new FileResource(File::with(['pages', 'news', 'category'])->get());
     }
 
     public function store(StoreFileRequest $request)
     {
         $file = File::create($request->all());
         $file->pages()->sync($request->input('pages', []));
+        $file->news()->sync($request->input('news', []));
 
         if ($request->input('file', false)) {
             $file->addMedia(storage_path('tmp/uploads/' . $request->input('file')))->toMediaCollection('file');
@@ -41,13 +42,14 @@ class FilesApiController extends Controller
     {
         abort_if(Gate::denies('file_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new FileResource($file->load(['pages', 'category']));
+        return new FileResource($file->load(['pages', 'news', 'category']));
     }
 
     public function update(UpdateFileRequest $request, File $file)
     {
         $file->update($request->all());
         $file->pages()->sync($request->input('pages', []));
+        $file->news()->sync($request->input('news', []));
 
         if ($request->input('file', false)) {
             if (!$file->file || $request->input('file') !== $file->file->file_name) {

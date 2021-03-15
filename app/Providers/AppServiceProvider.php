@@ -13,7 +13,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        setlocale(LC_TIME, config('app.locale'), 'it_IT', 'italian');
+        \Carbon\Carbon::setLocale('it');
     }
 
     /**
@@ -23,6 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
     }
 }

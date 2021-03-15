@@ -1,17 +1,18 @@
 <?php
 
-Route::redirect('/', '/login');
-Route::get('/home', function () {
-    if (session('status')) {
-        return redirect()->route('admin.home')->with('status', session('status'));
-    }
-
-    return redirect()->route('admin.home');
-});
-
 Auth::routes(['register' => false]);
 
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+    
+    // Crea site.xml per motori di ricerca
+    Route::get('sitemap', 'HomeController@sitemap')->name('sitemap');
+
+    // Visualizza valori in sessione
+    Route::get('/session', function () {
+        dd(session()->all());
+    });
+
     Route::get('/', 'HomeController@index')->name('home');
     // Permissions
     Route::delete('permissions/destroy', 'PermissionsController@massDestroy')->name('permissions.massDestroy');
@@ -54,7 +55,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Colors
     Route::delete('colors/destroy', 'ColorsController@massDestroy')->name('colors.massDestroy');
     Route::resource('colors', 'ColorsController');
+
+    Route::post('savesetting/{setting}', 'HomeController@saveSetting')->name('save-setting');
+
 });
+
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password
     if (file_exists(app_path('Http/Controllers/Auth/ChangePasswordController.php'))) {
@@ -63,4 +68,19 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
         Route::post('profile', 'ChangePasswordController@updateProfile')->name('password.updateProfile');
         Route::post('profile/destroy', 'ChangePasswordController@destroy')->name('password.destroyProfile');
     }
+});
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    });
+    Route::get('/welcome2', function () {
+        return view('welcome2');
+    });
+
+    Route::get('/download/{slug}', 'SiteController@download')->name('file-download');
+    Route::get('/notizia/{slug}', 'SiteController@news')->name('site-one-news');
+    Route::get('/news/{slug}', 'SiteController@index')->name('site-news');
+    Route::get('/{slug?}', 'SiteController@index')->name('site');
 });

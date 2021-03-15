@@ -10,7 +10,7 @@
         <form method="POST" action="{{ route("admin.news.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="category_id">{{ trans('cruds.news.fields.category') }}</label>
+                <label class="required" for="category_id">{{ trans('cruds.news.fields.category') }}</label>
                 <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id">
                     @foreach($categories as $id => $category)
                         <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>{{ $category }}</option>
@@ -32,6 +32,16 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.news.fields.title_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label class="required" for="slug">{{ trans('cruds.news.fields.slug') }}</label>
+                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', '') }}" required>
+                @if($errors->has('slug'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('slug') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.news.fields.slug_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="text">{{ trans('cruds.news.fields.text') }}</label>
@@ -62,6 +72,21 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.news.fields.date_end_helper') }}</span>
+            </div>
+            <div class="form-group">
+              <label class="required">{{ trans('cruds.news.fields.text_color') }}</label>
+              <select class="form-control {{ $errors->has('text_color') ? 'is-invalid' : '' }}" name="text_color" id="text_color" required>
+                  <option value disabled {{ old('text_color', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
+                  @foreach(App\Models\News::TEXT_COLOR_SELECT as $key => $label)
+                      <option value="{{ $key }}" {{ old('text_color', '#fff') === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                  @endforeach
+              </select>
+              @if($errors->has('text_color'))
+                  <div class="invalid-feedback">
+                      {{ $errors->first('text_color') }}
+                  </div>
+              @endif
+              <span class="help-block">{{ trans('cruds.news.fields.text_color_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="photo">{{ trans('cruds.news.fields.photo') }}</label>
@@ -141,14 +166,40 @@
     }
   }
 
+  // var allEditors = document.querySelectorAll('.ckeditor');
+  // for (var i = 0; i < allEditors.length; ++i) {
+  //   ClassicEditor.create(
+  //     allEditors[i], {
+  //       extraPlugins: [SimpleUploadAdapter]
+  //     }
+  //   );
+  // }
   var allEditors = document.querySelectorAll('.ckeditor');
   for (var i = 0; i < allEditors.length; ++i) {
     ClassicEditor.create(
       allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
+        extraPlugins: [SimpleUploadAdapter],
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 
+                'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed',  '|', 'undo', 'redo' ],
+        // toolbar: {
+        //     items: [
+        //         'heading', '|','fontfamily', 'fontsize', '|','alignment', '|','fontColor', 'fontBackgroundColor', '|','bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+        //         'link', '|','outdent', 'indent', '|','bulletedList', 'numberedList', 'todoList', '|',
+        //         'code', 'codeBlock', '|','insertTable', '|','uploadImage', 'blockQuote', '|','undo', 'redo'
+        //     ],
+        //     shouldNotGroupWhenFull: true
+        // },
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h3', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h4', title: 'Heading 2', class: 'ck-heading_heading2' }
+            ]
+        }
       }
     );
   }
+});
 });
 </script>
 

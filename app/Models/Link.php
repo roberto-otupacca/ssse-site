@@ -20,9 +20,9 @@ class Link extends Model
     ];
 
     protected $fillable = [
-        'category_id',
         'title',
         'link',
+        'category_id',
         'display_order',
         'created_at',
         'updated_at',
@@ -37,6 +37,11 @@ class Link extends Model
     public function pages()
     {
         return $this->belongsToMany(Page::class);
+    }
+
+    public function news()
+    {
+        return $this->belongsToMany(News::class);
     }
 
     public function category()

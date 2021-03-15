@@ -21,6 +21,16 @@
                 <span class="help-block">{{ trans('cruds.file.fields.title_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="slug">{{ trans('cruds.file.fields.slug') }}</label>
+                <input class="form-control {{ $errors->has('slug') ? 'is-invalid' : '' }}" type="text" name="slug" id="slug" value="{{ old('slug', $file->slug) }}" required>
+                @if($errors->has('slug'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('slug') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.file.fields.slug_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="file">{{ trans('cruds.file.fields.file') }}</label>
                 <div class="needsclick dropzone {{ $errors->has('file') ? 'is-invalid' : '' }}" id="file-dropzone">
                 </div>
@@ -37,9 +47,12 @@
                     <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('pages') ? 'is-invalid' : '' }}" name="pages[]" id="pages" multiple>
-                    @foreach($pages as $id => $pages)
-                        <option value="{{ $id }}" {{ (in_array($id, old('pages', [])) || $file->pages->contains($id)) ? 'selected' : '' }}>{{ $pages }}</option>
+                {{-- {{dd($pages)}} --}}
+                <select class="form-control select2 {{ $errors->has('pages') ? 'is-invalid' : '' }}" name="pages[]" id="pages" multiple>                    
+                    @foreach($pages->pluck('title', 'id') as $id => $page)
+                        <option value="{{ $id }}" {{ (in_array($id, old('pages', [])) || $file->pages->contains($id)) ? 'selected' : '' }}>
+                            {{ $page . ' (' . $pages->where('id', $id)->first()->slug . ')'}}
+                        </option>
                     @endforeach
                 </select>
                 @if($errors->has('pages'))
@@ -48,6 +61,24 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.file.fields.pages_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="news">{{ trans('cruds.file.fields.news') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('news') ? 'is-invalid' : '' }}" name="news[]" id="news" multiple>
+                    @foreach($news as $id => $news)
+                        <option value="{{ $id }}" {{ (in_array($id, old('news', [])) || $file->news->contains($id)) ? 'selected' : '' }}>{{ $news }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('news'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('news') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.file.fields.news_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="category_id">{{ trans('cruds.file.fields.category') }}</label>

@@ -31,6 +31,9 @@
                             {{ trans('cruds.file.fields.pages') }}
                         </th>
                         <th>
+                            {{ trans('cruds.file.fields.news') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.file.fields.category') }}
                         </th>
                         <th>
@@ -59,6 +62,11 @@
                             </td>
                             <td>
                                 @foreach($file->pages as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($file->news as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
                             </td>

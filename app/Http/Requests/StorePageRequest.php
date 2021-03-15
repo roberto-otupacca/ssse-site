@@ -19,13 +19,12 @@ class StorePageRequest extends FormRequest
         return [
             'title'         => [
                 'string',
-                'min:3',
+                'min:2',
                 'required',
-                'unique:pages',
             ],
             'slug'          => [
                 'string',
-                'min:3',
+                'min:2',
                 'required',
                 'unique:pages',
             ],

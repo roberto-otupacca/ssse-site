@@ -16,11 +16,13 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/dusk": "^6.6",
         "laravel/framework": "^8.0",
+        "laravel/sanctum": "^2.8",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
-        "yajra/laravel-datatables-oracle": "^9.11",
+        "qcod/laravel-app-settings": "^1.4",
         "spatie/laravel-medialibrary": "^8.7",
-        "laravel/sanctum": "^2.8"
+        "spatie/laravel-sitemap": "^5.9",
+        "yajra/laravel-datatables-oracle": "^9.11"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

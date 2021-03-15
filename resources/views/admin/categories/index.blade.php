@@ -3,20 +3,21 @@
 @can('category_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.categories.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.category.title_singular') }}
+            <h2 class="d-inline-block align-middle">{{ trans('cruds.category.title_singular') }}</h2>
+            <a class="btn btn-success float-right" href="{{ route('admin.categories.create') }}">
+                {{ trans('global.add') }} 
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
-    <div class="card-header">
+    {{-- <div class="card-header">
         {{ trans('cruds.category.title_singular') }} {{ trans('global.list') }}
-    </div>
+    </div> --}}
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Category">
+            <table class=" table table-striped table-hover datatable datatable-Category">
                 <thead>
                     <tr>
                         <th width="10">
@@ -30,6 +31,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.category.fields.color') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.category.fields.display_order') }}
                         </th>
                         <th>
                             &nbsp;
@@ -53,6 +57,9 @@
                             </select>
                         </td>
                         <td>
+                            {{-- <input class="search" type="text" placeholder="{{ trans('global.search') }}"> --}}
+                        </td>
+                        <td>
                         </td>
                     </tr>
                 </thead>
@@ -72,26 +79,35 @@
                                 {{ $category->color->name ?? '' }}
                             </td>
                             <td>
-                                @can('category_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.categories.show', $category->id) }}">
-                                        {{ trans('global.view') }}
-                                    </a>
-                                @endcan
+                                {{ $category->display_order ?? '' }}
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    @can('category_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.categories.show', $category->id) }}">
+                                            <i class="fas fa-info fa-sm"></i>
+                                            {{-- {{ trans('global.view') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('category_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.categories.edit', $category->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                    @can('category_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.categories.edit', $category->id) }}">
+                                            <i class="far fa-edit fa-sm"></i>
+                                            {{-- {{ trans('global.edit') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('category_delete')
-                                    <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
-
+                                    @can('category_delete')
+                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            {{-- <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}"> --}}
+                                            <button type="submit"  class="btn btn-xs btn-danger" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">
+                                                <i class="far fa-trash-alt fa-sm"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
                             </td>
 
                         </tr>
@@ -101,8 +117,6 @@
         </div>
     </div>
 </div>
-
-
 
 @endsection
 @section('scripts')

@@ -55,6 +55,19 @@
                 <span class="help-block">{{ trans('cruds.page.fields.text_helper') }}</span>
             </div>
             <div class="form-group">
+                <div class="form-check {{ $errors->has('draft') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="draft" value="0">
+                    <input class="form-check-input" type="checkbox" name="draft" id="draft" value="1" {{ $page->draft || old('draft', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="draft">{{ trans('cruds.page.fields.draft') }}</label>
+                </div>
+                @if($errors->has('draft'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('draft') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.page.fields.draft_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <div class="form-check {{ $errors->has('menu_top') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="menu_top" value="0">
                     <input class="form-check-input" type="checkbox" name="menu_top" id="menu_top" value="1" {{ $page->menu_top || old('menu_top', 0) === 1 ? 'checked' : '' }}>
@@ -182,14 +195,44 @@
     }
   }
 
+//   var allEditors = document.querySelectorAll('.ckeditor');
+//   for (var i = 0; i < allEditors.length; ++i) {
+//     ClassicEditor.create(
+//       allEditors[i], {
+//         extraPlugins: [SimpleUploadAdapter]
+//       }
+//     );
+//   }
+  
+  
   var allEditors = document.querySelectorAll('.ckeditor');
   for (var i = 0; i < allEditors.length; ++i) {
     ClassicEditor.create(
       allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
+        extraPlugins: [SimpleUploadAdapter],
+        toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|', 
+                'uploadImage', 'blockQuote', 'insertTable', 'mediaEmbed',  '|', 'undo', 'redo' ],
+        // toolbar: {
+        //     items: [
+        //         'heading', '|','fontfamily', 'fontsize', '|','alignment', '|','fontColor', 'fontBackgroundColor', '|','bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+        //         'link', '|','outdent', 'indent', '|','bulletedList', 'numberedList', 'todoList', '|',
+        //         'code', 'codeBlock', '|','insertTable', '|','uploadImage', 'blockQuote', '|','undo', 'redo'
+        //     ],
+        //     shouldNotGroupWhenFull: true
+        // },
+        heading: {
+            options: [
+                { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
+                { model: 'heading3', view: 'h3', title: 'Heading 3', class: 'ck-heading_heading3' },
+                { model: 'heading4', view: 'h4', title: 'Heading 4', class: 'ck-heading_heading4' }
+            ]
+        }
       }
     );
   }
+
 });
 </script>
 

@@ -28,6 +28,7 @@ class File extends Model implements HasMedia
 
     protected $fillable = [
         'title',
+        'slug',
         'category_id',
         'display_order',
         'created_at',
@@ -43,7 +44,7 @@ class File extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview')->fit('crop', 900, 500);
     }
 
     public function getFileAttribute()
@@ -54,6 +55,11 @@ class File extends Model implements HasMedia
     public function pages()
     {
         return $this->belongsToMany(Page::class);
+    }
+
+    public function news()
+    {
+        return $this->belongsToMany(News::class);
     }
 
     public function category()

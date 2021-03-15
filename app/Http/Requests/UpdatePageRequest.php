@@ -19,13 +19,12 @@ class UpdatePageRequest extends FormRequest
         return [
             'title'         => [
                 'string',
-                'min:3',
+                'min:2',
                 'required',
-                'unique:pages,title,' . request()->route('page')->id,
             ],
             'slug'          => [
                 'string',
-                'min:3',
+                'min:2',
                 'required',
                 'unique:pages,slug,' . request()->route('page')->id,
             ],

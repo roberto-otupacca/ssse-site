@@ -1,20 +1,13 @@
 <div id="sidebar" class="c-sidebar c-sidebar-fixed c-sidebar-lg-show">
 
     <div class="c-sidebar-brand d-md-down-none">
-        <a class="c-sidebar-brand-full h4" href="#">
+        <a class="c-sidebar-brand-full h4" href="{{ route("admin.home") }}">
+            <i class="fas fa-tachometer-alt"></i>
             {{ trans('panel.site_title') }}
         </a>
     </div>
 
     <ul class="c-sidebar-nav">
-        <li class="c-sidebar-nav-item">
-            <a href="{{ route("admin.home") }}" class="c-sidebar-nav-link">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-tachometer-alt">
-
-                </i>
-                {{ trans('global.dashboard') }}
-            </a>
-        </li>
         @can('page_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.pages.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/pages") || request()->is("admin/pages/*") ? "c-active" : "" }}">
@@ -130,8 +123,7 @@
         @endif
         <li class="c-sidebar-nav-item">
             <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
-                <i class="c-sidebar-nav-icon fas fa-fw fa-sign-out-alt">
-
+                <i class="c-sidebar-nav-icon fas fa-fw fa-power-off">
                 </i>
                 {{ trans('global.logout') }}
             </a>

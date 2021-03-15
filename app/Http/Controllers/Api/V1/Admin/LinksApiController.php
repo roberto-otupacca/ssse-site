@@ -17,13 +17,14 @@ class LinksApiController extends Controller
     {
         abort_if(Gate::denies('link_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new LinkResource(Link::with(['pages', 'category'])->get());
+        return new LinkResource(Link::with(['pages', 'news', 'category'])->get());
     }
 
     public function store(StoreLinkRequest $request)
     {
         $link = Link::create($request->all());
         $link->pages()->sync($request->input('pages', []));
+        $link->news()->sync($request->input('news', []));
 
         return (new LinkResource($link))
             ->response()
@@ -34,13 +35,14 @@ class LinksApiController extends Controller
     {
         abort_if(Gate::denies('link_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new LinkResource($link->load(['pages', 'category']));
+        return new LinkResource($link->load(['pages', 'news', 'category']));
     }
 
     public function update(UpdateLinkRequest $request, Link $link)
     {
         $link->update($request->all());
         $link->pages()->sync($request->input('pages', []));
+        $link->news()->sync($request->input('news', []));
 
         return (new LinkResource($link))
             ->response()

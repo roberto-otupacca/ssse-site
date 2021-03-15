@@ -21,6 +21,13 @@ class News extends Model implements HasMedia
         'photo',
     ];
 
+    const TEXT_COLOR_SELECT = [
+        '#FFF' => 'Bianco',
+        '#0000CC' => 'Blu',
+        '#FFFF00' => 'Giallo',
+        '#000' => 'Nero',
+    ];
+
     protected $dates = [
         'date_start',
         'date_end',
@@ -32,9 +39,11 @@ class News extends Model implements HasMedia
     protected $fillable = [
         'category_id',
         'title',
+        'slug',
         'text',
         'date_start',
         'date_end',
+        'text_color',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -48,7 +57,17 @@ class News extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')->fit('crop', 50, 50);
-        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+        $this->addMediaConversion('preview')->fit('crop', 900, 500);
+    }
+
+    public function newsFiles()
+    {
+        return $this->belongsToMany(File::class);
+    }
+
+    public function newsLinks()
+    {
+        return $this->belongsToMany(Link::class);
     }
 
     public function category()

@@ -28,11 +28,23 @@ class UpdateFileRequest extends FormRequest
             'pages'         => [
                 'array',
             ],
+            'news.*'        => [
+                'integer',
+            ],
+            'news'          => [
+                'array',
+            ],
             'display_order' => [
                 'required',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
+            ],
+            'slug'          => [
+                'string',
+                'min:2',
+                'required',
+                'unique:files,slug,' . request()->route('file')->id,
             ],
         ];
     }

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreLinkRequest;
 use App\Http\Requests\UpdateLinkRequest;
 use App\Models\Category;
 use App\Models\Link;
+use App\Models\News;
 use App\Models\Page;
 use Gate;
 use Illuminate\Http\Request;
@@ -19,30 +20,36 @@ class LinksController extends Controller
     {
         abort_if(Gate::denies('link_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $links = Link::with(['pages', 'category'])->get();
+        $links = Link::with(['pages', 'news', 'category'])->get();
 
         $pages = Page::get();
 
+        $news = News::get();
+
         $categories = Category::get();
 
-        return view('admin.links.index', compact('links', 'pages', 'categories'));
+        return view('admin.links.index', compact('links', 'pages', 'news', 'categories'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('link_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $pages = Page::all()->pluck('title', 'id');
+        // $pages = Page::all()->pluck('title', 'id');
+        $pages = Page::all();
+
+        $news = News::all()->pluck('title', 'id');
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.links.create', compact('pages', 'categories'));
+        return view('admin.links.create', compact('pages', 'news', 'categories'));
     }
 
     public function store(StoreLinkRequest $request)
     {
         $link = Link::create($request->all());
         $link->pages()->sync($request->input('pages', []));
+        $link->news()->sync($request->input('news', []));
 
         return redirect()->route('admin.links.index');
     }
@@ -51,19 +58,23 @@ class LinksController extends Controller
     {
         abort_if(Gate::denies('link_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $pages = Page::all()->pluck('title', 'id');
+        // $pages = Page::all()->pluck('title', 'id');
+        $pages = Page::all();
+
+        $news = News::all()->pluck('title', 'id');
 
         $categories = Category::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $link->load('pages', 'category');
+        $link->load('pages', 'news', 'category');
 
-        return view('admin.links.edit', compact('pages', 'categories', 'link'));
+        return view('admin.links.edit', compact('pages', 'news', 'categories', 'link'));
     }
 
     public function update(UpdateLinkRequest $request, Link $link)
     {
         $link->update($request->all());
         $link->pages()->sync($request->input('pages', []));
+        $link->news()->sync($request->input('news', []));
 
         return redirect()->route('admin.links.index');
     }
@@ -72,7 +83,7 @@ class LinksController extends Controller
     {
         abort_if(Gate::denies('link_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $link->load('pages', 'category');
+        $link->load('pages', 'news', 'category');
 
         return view('admin.links.show', compact('link'));
     }

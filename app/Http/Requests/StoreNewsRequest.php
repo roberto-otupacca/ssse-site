@@ -17,10 +17,20 @@ class StoreNewsRequest extends FormRequest
     public function rules()
     {
         return [
+            'category_id' => [
+                'required',
+                'integer',
+            ],
             'title'      => [
                 'string',
                 'min:3',
                 'required',
+            ],
+            'slug'          => [
+                'string',
+                'min:2',
+                'required',
+                'unique:pages',
             ],
             'text'       => [
                 'required',

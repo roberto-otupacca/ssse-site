@@ -54,6 +54,19 @@
                 <span class="help-block">{{ trans('cruds.page.fields.text_helper') }}</span>
             </div>
             <div class="form-group">
+                <div class="form-check {{ $errors->has('draft') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="draft" value="0">
+                    <input class="form-check-input" type="checkbox" name="draft" id="draft" value="1" {{ old('draft', 0) == 1 || old('draft') === null ? 'checked' : '' }}>
+                    <label class="form-check-label" for="draft">{{ trans('cruds.page.fields.draft') }}</label>
+                </div>
+                @if($errors->has('draft'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('draft') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.page.fields.draft_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <div class="form-check {{ $errors->has('menu_top') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="menu_top" value="0">
                     <input class="form-check-input" type="checkbox" name="menu_top" id="menu_top" value="1" {{ old('menu_top', 0) == 1 ? 'checked' : '' }}>
@@ -181,14 +194,15 @@
     }
   }
 
-  var allEditors = document.querySelectorAll('.ckeditor');
-  for (var i = 0; i < allEditors.length; ++i) {
-    ClassicEditor.create(
-      allEditors[i], {
-        extraPlugins: [SimpleUploadAdapter]
-      }
-    );
-  }
+//   var allEditors = document.querySelectorAll('.ckeditor');
+//   for (var i = 0; i < allEditors.length; ++i) {
+//     ClassicEditor.create(
+//       allEditors[i], {
+//         extraPlugins: [SimpleUploadAdapter]
+//       }
+//     );
+//   }
+
 });
 </script>
 

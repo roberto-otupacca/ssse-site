@@ -31,6 +31,9 @@
                             {{ trans('cruds.link.fields.pages') }}
                         </th>
                         <th>
+                            {{ trans('cruds.link.fields.news') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.link.fields.category') }}
                         </th>
                         <th>
@@ -55,6 +58,11 @@
                             </td>
                             <td>
                                 @foreach($link->pages as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($link->news as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
                             </td>

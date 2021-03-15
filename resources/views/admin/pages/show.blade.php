@@ -57,6 +57,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.page.fields.draft') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $page->draft ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.page.fields.menu_top') }}
                         </th>
                         <td>

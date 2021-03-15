@@ -37,8 +37,10 @@
                     <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
                 <select class="form-control select2 {{ $errors->has('pages') ? 'is-invalid' : '' }}" name="pages[]" id="pages" multiple>
-                    @foreach($pages as $id => $pages)
-                        <option value="{{ $id }}" {{ (in_array($id, old('pages', [])) || $link->pages->contains($id)) ? 'selected' : '' }}>{{ $pages }}</option>
+                    @foreach($pages->pluck('title', 'id') as $id => $page)
+                        <option value="{{ $id }}" {{ (in_array($id, old('pages', [])) || $link->pages->contains($id)) ? 'selected' : '' }}>
+                            {{ $page . ' (' . $pages->where('id', $id)->first()->slug . ')'}}
+                        </option>
                     @endforeach
                 </select>
                 @if($errors->has('pages'))
@@ -47,6 +49,24 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.link.fields.pages_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="news">{{ trans('cruds.link.fields.news') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('news') ? 'is-invalid' : '' }}" name="news[]" id="news" multiple>
+                    @foreach($news as $id => $news)
+                        <option value="{{ $id }}" {{ (in_array($id, old('news', [])) || $link->news->contains($id)) ? 'selected' : '' }}>{{ $news }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('news'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('news') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.link.fields.news_helper') }}</span>
             </div>
             <div class="form-group">
                 <label for="category_id">{{ trans('cruds.link.fields.category') }}</label>

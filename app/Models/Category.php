@@ -23,6 +23,7 @@ class Category extends Model
         'name',
         'description',
         'color_id',
+        'display_order',
         'created_at',
         'updated_at',
         'deleted_at',

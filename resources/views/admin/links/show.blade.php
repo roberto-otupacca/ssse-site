@@ -45,7 +45,17 @@
                         </th>
                         <td>
                             @foreach($link->pages as $key => $pages)
-                                <span class="label label-info">{{ $pages->title }}</span>
+                                <span class="label label-info">{{ $pages->title . ' (' . $pages->slug . ')' }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.link.fields.news') }}
+                        </th>
+                        <td>
+                            @foreach($link->news as $key => $news)
+                                <span class="label label-info">{{ $news->title }}</span>
                             @endforeach
                         </td>
                     </tr>

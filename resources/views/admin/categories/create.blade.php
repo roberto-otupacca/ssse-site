@@ -44,6 +44,16 @@
                 <span class="help-block">{{ trans('cruds.category.fields.color_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="display_order">{{ trans('cruds.category.fields.display_order') }}</label>
+                <input class="form-control {{ $errors->has('display_order') ? 'is-invalid' : '' }}" type="number" name="display_order" id="display_order" value="{{ old('display_order', '10') }}" step="1" required>
+                @if($errors->has('display_order'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('display_order') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.category.fields.display_order_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

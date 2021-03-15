@@ -41,6 +41,14 @@
                     </tr>
                     <tr>
                         <th>
+                            {{ trans('cruds.news.fields.slug') }}
+                        </th>
+                        <td>
+                            {{ $news->slug }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
                             {{ trans('cruds.news.fields.text') }}
                         </th>
                         <td>
@@ -61,6 +69,14 @@
                         </th>
                         <td>
                             {{ $news->date_end }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.news.fields.text_color') }}
+                        </th>
+                        <td>
+                            {{ App\Models\News::TEXT_COLOR_SELECT[$news->text_color] ?? '' }}
                         </td>
                     </tr>
                     <tr>
@@ -86,6 +102,30 @@
     </div>
 </div>
 
-
+<div class="card">
+    <div class="card-header">
+        {{ trans('global.relatedData') }}
+    </div>
+    <ul class="nav nav-tabs" role="tablist" id="relationship-tabs">
+        <li class="nav-item">
+            <a class="nav-link" href="#news_files" role="tab" data-toggle="tab">
+                {{ trans('cruds.file.title') }}
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#news_links" role="tab" data-toggle="tab">
+                {{ trans('cruds.link.title') }}
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane" role="tabpanel" id="news_files">
+            @includeIf('admin.news.relationships.newsFiles', ['files' => $news->newsFiles])
+        </div>
+        <div class="tab-pane" role="tabpanel" id="news_links">
+            @includeIf('admin.news.relationships.newsLinks', ['links' => $news->newsLinks])
+        </div>
+    </div>
+</div>
 
 @endsection

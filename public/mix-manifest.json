@@ -1,4 +1,8 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=517fa4f7e1fbf982d63e",
+    "/js/app2.js": "/js/app2.js?id=5cdd7d93c5f3c1fb42a7",
+    "/css/fontawesome.css": "/css/fontawesome.css?id=823de68b489072615bf3",
+    "/css/app.css": "/css/app.css?id=914e943c0fcc51dccf05",
+    "/css/all.css": "/css/all.css?id=b30c0f95f3792bbea899",
+    "/js/all.js": "/js/all.js?id=80e5fba9b387834c213f"
 }

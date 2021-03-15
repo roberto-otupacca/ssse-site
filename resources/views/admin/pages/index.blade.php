@@ -1,22 +1,58 @@
 @extends('layouts.admin')
 @section('content')
+
 @can('page_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.pages.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.page.title_singular') }}
+            <h2 class="d-inline-block align-middle">{{ trans('cruds.page.title_singular') }}</h2>
+            <a class="btn btn-success float-right" href="{{ route('admin.pages.create') }}">
+                {{ trans('global.add') }}
             </a>
         </div>
     </div>
 @endcan
+
 <div class="card">
-    <div class="card-header">
-        {{ trans('cruds.page.title_singular') }} {{ trans('global.list') }}
+    <div class="card-body">
+        <div class="row">
+            <div class="col-7">
+                @php $NodeId = null; @endphp
+                @if($pages->whereNull('parent_id')->count() > 0)
+                    <ul id="myUL">
+                        <li>
+                            <span class="btn btn-primary btn-xs all-tree" style="margin-bottom: 9px;">
+                                <i class="fas fa-expand"></i>
+                            </span>
+                            <span class="caret" style= "font-size: 22px">{{ trans('cruds.page.title_tree') }}</span>
+                            @include('admin.pages.recursivePages')
+                        <li>
+                    </ul>
+                @endif
+            </div>
+            <div class="col-5">
+            </div>
+        </div>
     </div>
+</div>
+
+{{-- @can('page_create')
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-lg-12">
+            <h2 class="d-inline-block align-middle">{{ trans('cruds.page.title_singular') }}</h2>
+            <a class="btn btn-success float-right" href="{{ route('admin.pages.create') }}">
+                {{ trans('global.add') }}
+            </a>
+        </div>
+    </div>
+@endcan --}}
+<div class="card">
+    {{-- <div class="card-header">
+        {{ trans('cruds.page.title_singular') }} {{ trans('global.list') }}
+    </div> --}}
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Page">
+            <table class=" table table-striped table-hover datatable datatable-Page">
                 <thead>
                     <tr>
                         <th width="10">
@@ -30,6 +66,9 @@
                         </th>
                         <th>
                             {{ trans('cruds.page.fields.slug') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.page.fields.draft') }}
                         </th>
                         <th>
                             {{ trans('cruds.page.fields.menu_top') }}
@@ -72,7 +111,9 @@
                         <td>
                         </td>
                         <td>
-                            <select class="search">
+                        </td>
+                        <td>
+                            <select class="search" style="width: 55px !important;">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($colors as $key => $item)
                                     <option value="{{ $item->name }}">{{ $item->name }}</option>
@@ -82,7 +123,7 @@
                         <td>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            {{-- <input class="search" type="text" placeholder="{{ trans('global.search') }}"> --}}
                         </td>
                         <td>
                         </td>
@@ -102,6 +143,10 @@
                             </td>
                             <td>
                                 {{ $page->slug ?? '' }}
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $page->draft ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $page->draft ? 'checked' : '' }}>
                             </td>
                             <td>
                                 <span style="display:none">{{ $page->menu_top ?? '' }}</span>
@@ -125,26 +170,38 @@
                                 {{ $page->display_order ?? '' }}
                             </td>
                             <td>
-                                @can('page_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.pages.show', $page->id) }}">
-                                        {{ trans('global.view') }}
+                                <div class="btn-group" role="group">
+                                    <a href="{{url('/'.$page->slug)}}" target="blank" class="btn btn-xs btn-secondary"">
+                                        <i class="fas fa-external-link-alt"></i>
                                     </a>
-                                @endcan
+                                    @can('page_show')
+                                        <a class="btn btn-xs btn-primary" href="{{ route('admin.pages.show', $page->id) }}">
+                                            <i class="fas fa-info fa-sm"></i>
+                                            {{-- {{ trans('global.view') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('page_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.pages.edit', $page->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                    @can('page_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.pages.edit', $page->id) }}">
+                                            <i class="far fa-edit fa-sm"></i>
+                                            {{-- {{ trans('global.edit') }} --}}
+                                        </a>
+                                    @endcan
 
-                                @can('page_delete')
-                                    <form action="{{ route('admin.pages.destroy', $page->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                                @endcan
+                                    @can('page_delete')
+                                        <form action="{{ route('admin.pages.destroy', $page->id) }}"
+                                                method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');"
+                                                >
+                                            <input type="hidden" name="_method" value="DELETE">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            {{-- <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}"> --}}
 
+                                            <button type="submit"  class="btn btn-xs btn-danger" style="border-top-left-radius: 0px; border-bottom-left-radius: 0px">
+                                                <i class="far fa-trash-alt fa-sm"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </div>
                             </td>
 
                         </tr>
@@ -203,7 +260,7 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+
 let visibleColumnsIndexes = null;
 $('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false
@@ -226,6 +283,31 @@ table.on('column-visibility.dt', function(e, settings, column, state) {
       });
   })
 })
+
+// Visione ad albero
+var toggler = document.getElementsByClassName("caret");
+var openClose = 1;
+var i;
+
+for (i = 0; i < toggler.length; i++) {
+  toggler[i].addEventListener("click", function() {
+    this.parentElement.querySelector(".nested").classList.toggle("active");
+    this.classList.toggle("caret-down");
+  });
+}
+
+document.getElementsByClassName("all-tree")[0].addEventListener("click", function() {
+    for (i = 0; i < toggler.length; i++) {
+        if (openClose == 1) {
+            toggler[i].parentElement.querySelector(".nested").classList.add("active");
+            toggler[i].classList.add("caret-down");
+        } else {
+            toggler[i].parentElement.querySelector(".nested").classList.remove("active");
+            toggler[i].classList.remove("caret-down");
+        }
+    }
+    openClose = -1 * openClose;
+  });
 
 </script>
 @endsection

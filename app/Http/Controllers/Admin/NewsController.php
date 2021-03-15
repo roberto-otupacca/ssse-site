@@ -13,6 +13,7 @@ use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
+Use App\Helpers\SiteHelper;
 
 class NewsController extends Controller
 {
@@ -24,7 +25,7 @@ class NewsController extends Controller
 
         $news = News::with(['category', 'media'])->get();
 
-        $categories = Category::get();
+        $categories = Category::orderBy('display_order')->get();
 
         return view('admin.news.index', compact('news', 'categories'));
     }
@@ -49,6 +50,8 @@ class NewsController extends Controller
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $news->id]);
         }
+
+        SiteHelper::createSitemap();
 
         return redirect()->route('admin.news.index');
     }
@@ -84,6 +87,8 @@ class NewsController extends Controller
             }
         }
 
+        SiteHelper::createSitemap();
+
         return redirect()->route('admin.news.index');
     }
 
@@ -91,7 +96,7 @@ class NewsController extends Controller
     {
         abort_if(Gate::denies('news_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $news->load('category');
+        $news->load('category', 'newsFiles', 'newsLinks');
 
         return view('admin.news.show', compact('news'));
     }

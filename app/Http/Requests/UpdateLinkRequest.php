@@ -17,12 +17,6 @@ class UpdateLinkRequest extends FormRequest
     public function rules()
     {
         return [
-            'pages.*'       => [
-                'integer',
-            ],
-            'pages'         => [
-                'array',
-            ],
             'title'         => [
                 'string',
                 'min:3',
@@ -32,6 +26,19 @@ class UpdateLinkRequest extends FormRequest
                 'string',
                 'min:0',
                 'nullable',
+                'url',
+            ],
+            'pages.*'       => [
+                'integer',
+            ],
+            'pages'         => [
+                'array',
+            ],
+            'news.*'        => [
+                'integer',
+            ],
+            'news'          => [
+                'array',
             ],
             'display_order' => [
                 'required',
