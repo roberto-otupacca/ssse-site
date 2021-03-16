@@ -137,7 +137,7 @@
                         </div>
 
                         <div class="w-full xl:w-4/12 px-4">
-                            <x-site.menuright></x-site.menuright>
+                            <x-site.menuRight></x-site.menuRight>
                         </div>
                     @endif
                 </div>

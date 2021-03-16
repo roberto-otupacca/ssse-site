@@ -109,7 +109,7 @@
 
                         <div class="w-full xl:w-4/12 px-4 
                                     {{session('settings')->where('name', 'menurows')->where('val', '2')->count()?'':''}}">
-                            <x-site.menuright></x-site.menuright>
+                            <x-site.menuRight></x-site.menuRight>
                         </div>
                     @endif
                 </div>
