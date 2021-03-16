@@ -22,7 +22,8 @@
         "qcod/laravel-app-settings": "^1.4",
         "spatie/laravel-medialibrary": "^8.7",
         "spatie/laravel-sitemap": "^5.9",
-        "yajra/laravel-datatables-oracle": "^9.11"
+        "yajra/laravel-datatables-oracle": "^9.11",
+        "gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
