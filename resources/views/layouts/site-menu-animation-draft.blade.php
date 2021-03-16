@@ -70,7 +70,7 @@
     <body class="min-h-screen flex flex-col bg-sssebackground dark:bg-sssebackground-dark font-sans">
         <div class="flex-grow">  
             {{-- Componenete menu in alto--}}
-            <x-site.menutop>Menu</x-site.menutop>
+            <x-site.menuTop>Menu</x-site.menuTop>
             
             @if(Request::segment(1) == 'home' || is_null(Request::segment(1)))
 
