@@ -2,7 +2,7 @@
 {{-- {{dd($news)}} --}}
 <div class="{{intval(session('settings')->where('name', 'menurows')->where('val', '1')->count())?'h-28 lg:h-16':'h-28'}}"></div>
 <div class=" text-gray-800 flex items-center justify-center my-8" x-data="carouselFilter()">
-    <div class="container grid grid-cols-1">
+    <div class="container grid grid-cols-1 px-5">
         @if($news->take(session('settings')->where('name', 'newsnumber')->firstWhere('val')->val)->groupBy('category_name')->count() > 1)
             <div class="flex  justify-center gap-12">
                 {{--Titoli categorie--}}

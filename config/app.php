@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        // Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // Messo in AppServiceProvider.php
 
         /*
          * Application Service Providers...

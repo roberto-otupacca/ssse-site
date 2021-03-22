@@ -93,6 +93,27 @@
                         </button>
                     </form>
 
+
+                    {{-- Numero news da vedere in prima pagina --}}
+                    <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'newsnumber']) }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group my-2">
+                            <strong>
+                                <label for="newsnumber">{{ trans('global.configNewsNumber') }}</label>
+                            </strong>
+                        </div>        
+                        <div class="form-group mx-sm-2">
+                            <input class="form-control" 
+                                   type="number" name="newsnumber" id="newsnumber" 
+                                   value="{{intval(session('settings')->where('name', 'newsnumber')->first()->val)}}" >
+                        </div>
+
+                        <button class="btn btn-xs btn-danger" type="submit">
+                            {{ trans('global.saveConfig') }}
+                        </button>
+                    </form>
+
                     
                     {{-- Radio button statistiche visibili si/no --}}
                     <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'statistics']) }}" enctype="multipart/form-data">
@@ -120,21 +141,28 @@
                         </button>
                     </form>
 
-                    {{-- Numero news da vedere in prima pagina --}}
-                    <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'newsnumber']) }}" enctype="multipart/form-data">
+                    
+                    {{-- Radio button statistiche visibili si/no --}}
+                    <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'statposition']) }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group my-2">
-                            <strong>
-                                <label for="newsnumber">{{ trans('global.configNewsNumber') }}</label>
-                            </strong>
-                        </div>        
-                        <div class="form-group mx-sm-2">
-                            <input class="form-control" 
-                                   type="number" name="newsnumber" id="newsnumber" 
-                                   value="{{intval(session('settings')->where('name', 'newsnumber')->first()->val)}}" >
+                            <strong><label for="statposition">{{ trans('global.configStatposition') }}</strong>
                         </div>
-
+                            @foreach(['up' => 'Sopra', 'down' => 'Sotto'] as $key => $color)
+                                <fieldset class="form-group mx-sm-2 my-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="statposition" 
+                                                id="color-{{$key}}" value="{{$key}}" 
+                                                {{ (session('settings')->where('name', 'statposition')->where('val', $key)->count())? 'checked="checked"' : '' }}>
+                                                
+                                        <label class="form-check-label" for="color-{{$key}}">
+                                            {{$color}}
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            @endforeach
+                          
                         <button class="btn btn-xs btn-danger" type="submit">
                             {{ trans('global.saveConfig') }}
                         </button>

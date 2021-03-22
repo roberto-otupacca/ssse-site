@@ -41,6 +41,12 @@
             {{-- Componenete menu in alto--}}
             <x-site.menuTop>Menu</x-site.menuTop>
             
+            {{-- Lista mattonelle di statistiche --}}
+            @if (session('settings')->where('name', 'statistics')->where('val', 'yes')->count() && session('settings')->where('name', 'statposition')->where('val', 'up')->count()
+                && (Request::segment(1) == 'home' || is_null(Request::segment(1)))) 
+                <x-site.card-statistics />
+            @endif
+
             {{-- Viaualizzazione immagine fissa / News + sottomenu SIG SEA FC--}}
             @if(Request::segment(1) == 'home' || is_null(Request::segment(1)))
 
@@ -116,7 +122,7 @@
             </div>
             
             {{-- Lista mattonelle di statistiche --}}
-            @if (session('settings')->where('name', 'statistics')->where('val', 'yes')->count() 
+            @if (session('settings')->where('name', 'statistics')->where('val', 'yes')->count() && session('settings')->where('name', 'statposition')->where('val', 'down')->count()
                 && (Request::segment(1) == 'home' || is_null(Request::segment(1)))) 
                 <x-site.card-statistics />
             @endif

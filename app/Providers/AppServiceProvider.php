@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
         setlocale(LC_TIME, config('app.locale'), 'it_IT', 'italian');
         \Carbon\Carbon::setLocale('it');
+
+        if (App::environment('local')) {
+            $this->app->register(\Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class);
+        }
+    
     }
 
     /**

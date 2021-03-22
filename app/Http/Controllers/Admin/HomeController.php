@@ -21,7 +21,7 @@ class HomeController
             session()->put('settings', $settings);
         }
 
-        if ($settings->count() < 5) {
+        if ($settings->count() < 6) {
             $s = new Setting();
             $s->name = 'darkmode';
             $s->val = 'white';
@@ -42,6 +42,10 @@ class HomeController
             $s = new Setting();
             $s->name = 'menurows';
             $s->val = '1';
+            $s->save();
+            $s = new Setting();
+            $s->name = 'statposition';
+            $s->val = 'down';
             $s->save();
             session()->put('settings', Setting::all('name','val'));
         }

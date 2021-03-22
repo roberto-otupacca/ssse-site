@@ -8,6 +8,7 @@ return [
     'configColor'                          => 'Aspetto sito (colore):',
     'configSiteColumns'                    => 'Suddivisione pagina:',
     'configStatistics'                     => 'Visualizza statistiche in prima pagina:',
+    'configStatposition'                   => 'Visualizza statistiche in alto o in basso:',
     'configNewsNumber'                     => 'Numero massimo di news visibili in homepage:',
     'configMenuRows'                       => 'Menu in alto su due righe:',
     'saveConfig'                           => 'Attiva la modifica',
