@@ -142,7 +142,7 @@
                     </form>
 
                     
-                    {{-- Radio button statistiche visibili si/no --}}
+                    {{-- Radio button posizione statistiche su/giù --}}
                     <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'statposition']) }}" enctype="multipart/form-data">
                         @csrf
 
@@ -168,6 +168,31 @@
                         </button>
                     </form>
 
+                    {{-- Radio button card contact us si/prima pagina/tutte le pagine --}}
+                    <form class="form-inline" method="POST" action="{{ route("admin.save-setting", ['setting' => 'contactus']) }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-group my-2">
+                            <strong><label for="contactus">{{ trans('global.configContactus') }}</strong>
+                        </div>
+                            @foreach(['no' => 'No', 'firstpage' => 'Solo in prima pagina', 'allpages' => 'In tutte le pagine'] as $key => $color)
+                                <fieldset class="form-group mx-sm-2 my-2">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="contactus" 
+                                                id="color-{{$key}}" value="{{$key}}" 
+                                                {{ (session('settings')->where('name', 'contactus')->where('val', $key)->count())? 'checked="checked"' : '' }}>
+                                                
+                                        <label class="form-check-label" for="color-{{$key}}">
+                                            {{$color}}
+                                        </label>
+                                    </div>
+                                </fieldset>
+                            @endforeach
+                        
+                        <button class="btn btn-xs btn-danger" type="submit">
+                            {{ trans('global.saveConfig') }}
+                        </button>
+                    </form>
 
                 </div>
             </div>

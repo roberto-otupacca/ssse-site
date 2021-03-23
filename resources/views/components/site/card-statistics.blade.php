@@ -1,10 +1,11 @@
 {{-- <x-site.card-statistics title="Titolo" dimension="dim" :link="$link" :color="$color" :light="$light"/> --}}
-<section class="text-gray-600 pt-24 body-font">
+<section class="text-gray-600 pt-24 body-font 
+  @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count()) pb-10 @endif">
   <div class="container mx-auto px-5">
     
     @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count())
       <div class="flex flex-col text-center w-full mb-10">
-        <h1 class=" text-4xl lg:text-5xl font-semibold title-font mb-4 text-sssegreen">IN BREVE</h1>
+        <h2 class=" text-4xl lg:text-5xl font-semibold title-font mb-4 text-sssegreen">IN BREVE</h2>
         <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
           La SSSE è perfettamente integrata nel mondo del lavoro e ha molte qualità nel campo dell'insegnamento.
         </p>

@@ -11,6 +11,7 @@ return [
     'configStatposition'                   => 'Visualizza statistiche in alto o in basso:',
     'configNewsNumber'                     => 'Numero massimo di news visibili in homepage:',
     'configMenuRows'                       => 'Menu in alto su due righe:',
+    'configContactus'                      => 'Visualizza caselle contattaci:',
     'saveConfig'                           => 'Attiva la modifica',
     'modifySuccess'                        => 'Modifica effettuata con successo',
 

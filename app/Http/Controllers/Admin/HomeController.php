@@ -21,7 +21,7 @@ class HomeController
             session()->put('settings', $settings);
         }
 
-        if ($settings->count() < 6) {
+        if ($settings->count() < 7) {
             $s = new Setting();
             $s->name = 'darkmode';
             $s->val = 'white';
@@ -38,7 +38,6 @@ class HomeController
             $s->name = 'newsnumber';
             $s->val = '0';
             $s->save();
-            $s->save();
             $s = new Setting();
             $s->name = 'menurows';
             $s->val = '1';
@@ -46,6 +45,10 @@ class HomeController
             $s = new Setting();
             $s->name = 'statposition';
             $s->val = 'down';
+            $s->save();
+            $s = new Setting();
+            $s->name = 'contactus';
+            $s->val = 'no'; // no, firstpage, allpages
             $s->save();
             session()->put('settings', Setting::all('name','val'));
         }

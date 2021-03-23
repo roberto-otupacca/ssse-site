@@ -126,7 +126,12 @@
                 && (Request::segment(1) == 'home' || is_null(Request::segment(1)))) 
                 <x-site.card-statistics />
             @endif
-            
+
+            @if ((session('settings')->where('name', 'contactus')->where('val', 'firstpage')->count() && (Request::segment(1) == 'home' || is_null(Request::segment(1))))
+                  || (session('settings')->where('name', 'contactus')->where('val', 'allpages')->count() )) 
+                <x-site.card-contact-us />
+            @endif
+
             {{-- Pulsante Back to top--}}
             <button onclick="topFunction()" id="backToTopButton" title="Go to top"
                     class="bg-sssegreen h-11 w-11 text-center
@@ -140,34 +145,41 @@
         </div>
 
         {{-- Footer statico --}}
-        <footer class="bg-sssebackground-dark dark:bg-sssebackground-darkest pt-4 mt-8 text-gray-500 ">
-            <div class="container mx-auto">
-                <div class="flex flex-wrap items-center justify-center px-4 pb-4 lg:gap-12 gap-2 ">
-                    <a href="{{url('/')}}">
-                        <img class="w-72 aspect-h-11" src="{{asset("img/header-logo-ssse_grey.png")}}" alt="Scuola specializzata superiore di economia"/>
-                    </a>
+        <footer class="pt-4 mt-8 text-gray-500 
+                        @if ((session('settings')->where('name', 'contactus')->where('val', 'firstpage')->count() && (Request::segment(1) != 'home' && !is_null(Request::segment(1))))
+                                || (session('settings')->where('name', 'contactus')->where('val', 'no')->count() ))
+                        bg-sssebackground-dark dark:bg-sssebackground-darkest 
+                        @endif">
+            @if ((session('settings')->where('name', 'contactus')->where('val', 'firstpage')->count() && (Request::segment(1) != 'home' && !is_null(Request::segment(1))))
+                  || (session('settings')->where('name', 'contactus')->where('val', 'no')->count() )) 
+                <div class="container mx-auto">
+                    <div class="flex flex-wrap items-center justify-center px-4 pb-4 lg:gap-12 gap-2 ">
+                        <a href="{{url('/')}}">
+                            <img class="w-72 aspect-h-11" src="{{asset("img/header-logo-ssse_grey.png")}}" alt="Scuola specializzata superiore di economia"/>
+                        </a>
 
-                    {{-- <a href="http://www.linkedin.com/pub/scuola-ssig-bellinzona/44/138/a41" target="_blank">
-                        <img class="w-10  aspect-h-12" src="{{asset("img/icn-linkedin-off.png")}}" alt="Linked In"/>
-                    </a> --}}
+                        {{-- <a href="http://www.linkedin.com/pub/scuola-ssig-bellinzona/44/138/a41" target="_blank">
+                            <img class="w-10  aspect-h-12" src="{{asset("img/icn-linkedin-off.png")}}" alt="Linked In"/>
+                        </a> --}}
 
-                    <a href="https://www.facebook.com/ssse.bellinzona" target="_blank">
-                        <img class="w-10 aspect-h-14" src="{{asset("img/icn-facebook-off.png")}}" alt="Facebook"/>
-                    </a>
+                        <a href="https://www.facebook.com/ssse.bellinzona" target="_blank">
+                            <img class="w-10 aspect-h-14" src="{{asset("img/icn-facebook-off.png")}}" alt="Facebook"/>
+                        </a>
 
-                    <a href="https://www.berufsbildungplus.ch/it/berufsbildungplus/berufsbildung" target="_blank">
-                        <img class="w-10  aspect-h-8" src="{{asset("img/img-azienda-formatrice-off.png")}}" alt="Azienda Formatrice"/>
-                    </a>
-                    {{-- <iframe class="h-max w-full lg:w-1/2"
-                        src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=Scuola+Specializzata+Superiore++di+Economia++Viale+Stefano+Franscini+32&amp;sll=46.813187,8.22421&amp;sspn=2.533956,5.048218&amp;ie=UTF8&amp;hq=Scuola+Specializzata+Superiore++di+Economia++Viale+Stefano+Franscini+32&amp;hnear=&amp;t=m&amp;ll=46.19427,9.013381&amp;spn=0.006238,0.011458&amp;z=15&amp;output=embed">
-                    </iframe> --}}
-                    
-                    <div class="h-40 w-full lg:w-1/2">
-                        <div id="map" class="w-full h-full"></div>
+                        <a href="https://www.berufsbildungplus.ch/it/berufsbildungplus/berufsbildung" target="_blank">
+                            <img class="w-10  aspect-h-8" src="{{asset("img/img-azienda-formatrice-off.png")}}" alt="Azienda Formatrice"/>
+                        </a>
+                        {{-- <iframe class="h-max w-full lg:w-1/2"
+                            src="https://maps.google.ch/maps?f=q&amp;source=s_q&amp;hl=it&amp;geocode=&amp;q=Scuola+Specializzata+Superiore++di+Economia++Viale+Stefano+Franscini+32&amp;sll=46.813187,8.22421&amp;sspn=2.533956,5.048218&amp;ie=UTF8&amp;hq=Scuola+Specializzata+Superiore++di+Economia++Viale+Stefano+Franscini+32&amp;hnear=&amp;t=m&amp;ll=46.19427,9.013381&amp;spn=0.006238,0.011458&amp;z=15&amp;output=embed">
+                        </iframe> --}}
+                        
+                        <div class="h-40 w-full lg:w-1/2">
+                            <div id="map" class="w-full h-full"></div>
+                        </div>
+                        
                     </div>
-                    
                 </div>
-            </div>
+            @endif
 
             <div class="bg-scroll bg-black bg-none bg-repeat box-border leading-5">
                 <div class="table clear-both mx-auto px-4" >
@@ -190,15 +202,15 @@
             </div>
         </footer>
 
+        {{-- Passa al javascript il tipo di visualizzazione--}}
+        <script>
+            const siteDarkMode = "{{session('settings')->where('name', 'darkmode')->where('val', 'dark')->count()}}";
+        </script>
         {{-- Tutto  pacchettizzato--}}
         {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" ></script> --}}
         {{-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js" ></script> --}}
         {{-- <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> --}}
         {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-        <script>
-            const siteDarkMode = "{{session('settings')->where('name', 'darkmode')->where('val', 'dark')->count()}}";
-            console.log(siteDarkMode);
-        </script>
         <script src="{{ asset('js/all.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc6ho3RWGGhLU1hYm9dv5slAZIIw__sd0&callback=initMap&libraries=&v=weekly" async></script>
 
