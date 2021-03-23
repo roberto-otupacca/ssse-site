@@ -4,7 +4,7 @@
 <div class=" text-gray-800 flex items-center justify-center my-8" x-data="carouselFilter()">
     <div class="container grid grid-cols-1 px-5">
         @if($news->take(session('settings')->where('name', 'newsnumber')->firstWhere('val')->val)->groupBy('category_name')->count() > 1)
-            <div class="flex  justify-center gap-12">
+            <div class="flex justify-center gap-12">
                 {{--Titoli categorie--}}
                 @foreach($news->take(session('settings')->where('name', 'newsnumber')->firstWhere('val')->val)->groupBy('category_name') as $key => $n)
                     <a class=" text-lg uppercase font-bold tracking-widest line-clamp-1 mb-2                
@@ -30,12 +30,12 @@
             >
                 <div class="grid grid-cols-1 grid-rows-1" x-data="carousel()" x-init="init()">
                 <div class="flex col-start-1 row-start-1 relative z-10 pointer-events-none
-                            justify-center mr-24 lg:mr-36 xl:mr-40 mb-2 xl:mb-4 2xl:mb-6
+                            justify-center mx-4 md:mx-12 mb-2 xl:mb-4 2xl:mb-6
                             items-end ">
                     {{-- Lista titoli di una categoria news--}}
                     @foreach($listNews as $n)
-                        <h2 class="text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl uppercase 
-                                    w-1/2 group-link-underline p-3 bg-opacity-30 bg-black"
+                        <h2 class="text-xs md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl uppercase 
+                                    w-3/5 group-link-underline p-3 bg-opacity-30 bg-black"
                                 
                             style="color:{{$n->text_color}}; "
                             x-show="active == {{$loop->index}}"

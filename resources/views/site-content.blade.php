@@ -2,7 +2,7 @@
 <x-site-layout :title="$pageL1->title" :news="$news" :page='$page'>
 
     {{-- Lista mattonelle primo livello--}}
-    <div class="flex flex-row gap-2 w-full pb-4">
+    <div class="flex flex-row gap-1 md:gap-2 w-full pb-4">
         @foreach($pagesL1 as $pag)
             @if($pag->slug != 'home')
                 <x-site.card-section dimension="big" :title="$pag->title" :link="'/'.$pag->slug" 
@@ -12,7 +12,7 @@
     </div>
     
     {{-- Lista mattonelle secondo livello--}}
-    <div class="flex flex-row gap-2 w-full pb-4">
+    <div class="flex flex-wrap gap-1 md:gap-2 w-full pb-4">
         @foreach($pagesL2 as $pag)
             @if($pag->slug != 'home' || 
               ($pag->slug == 'home' && Request::segment(1) != 'home' && !is_null(Request::segment(1))))
@@ -25,7 +25,7 @@
     {{-- Visualizzazione a una colonna: lista menu L3 per pagina home --}}
     @if (session('settings')->where('name', 'sitecolumns')->where('val', 'one')->count() &&
         (Request::segment(1) == 'home' || is_null(Request::segment(1)) || $page->menu_right == 1)) 
-        <div class="flex flex-row gap-2 w-full pb-4">
+        <div class="flex flex-wrap gap-1 md:gap-2 w-full pb-4">
             @foreach($pagesL3 as $pag)
              {{-- {{dd($pag)}} --}}
                 @if($pag->slug != 'home' || ($pag->slug == 'home' && Request::segment(1) != 'home' && !is_null(Request::segment(1))))
@@ -174,7 +174,7 @@
     {{-- Visualizzazione a una colonna lista menu L3 per pagine non home --}}
     @if (session('settings')->where('name', 'sitecolumns')->where('val', 'one')->count() &&
         Request::segment(1) != 'home' && !is_null(Request::segment(1)) && $page->menu_right != 1) 
-        <div class="flex flex-row gap-2 w-full pb-4">
+        <div class="flex flex-wrap gap-1 md:gap-2 w-full pb-4">
             @foreach($pagesL3 as $pag)
                 @if($pag->slug != 'home' || 
                 ($pag->slug == 'home' && Request::segment(1) != 'home' && !is_null(Request::segment(1))))
