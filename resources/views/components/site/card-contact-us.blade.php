@@ -21,7 +21,7 @@
               @endif
               >
         <a href="{{url('/contatti')}}">
-          <div class="shadow-xl h-60 flex flex-col justify-center
+          <div class="shadow-xl h-48 lg:h-60 flex flex-col justify-center
                     text-gray-500 dark:text-gray-300
                     bg-white dark:bg-sssebackground-darkest">
               <div class=" px-4 py-6">
@@ -30,7 +30,7 @@
                     <i class="fas fa-handshake fa-4x"></i>
                 </div>
                 <h2>
-                  <span class="text-4xl xl:text-5xl  text-gray-900 dark:text-gray-300 py-1 link-underline-black">Contattaci</span>
+                  <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 link-underline-black">Contattaci</span>
                 </h2>
                 {{-- <p class="leading-relaxed">
                 ev.testo
@@ -49,7 +49,7 @@
               @endif
               >
         <a href="https://www.facebook.com/ssse.bellinzona" target="_blank">
-          <div class="shadow-xl h-60 flex flex-col justify-center
+          <div class="shadow-xl h-48 lg:h-60 flex flex-col justify-center
                     text-gray-500 dark:text-gray-300
                     bg-white dark:bg-sssebackground-darkest">
             <div class=" px-4 py-6">
@@ -57,7 +57,7 @@
                 <i class="fab fa-facebook-square fa-4x"></i>
               </div>
               <h2>
-                <span class="text-4xl xl:text-5xl  text-gray-900 dark:text-gray-300 py-1 link-underline-black">Facebook Us</span>
+                <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 link-underline-black">Facebook Us</span>
               </h2>
               {{-- <p class="leading-relaxed">ev. testo</p> --}}
             </div>
@@ -81,7 +81,7 @@
             {{-- <div class="text-sssegreen w-12 h-12 mb-3 inline-block">
               <i class="fas fa-briefcase fa-3x"></i>
             </div> --}}
-            <h2 class="text-4xl xl:text-5xl text-gray-900 dark:text-gray-300 pb-4">Incontriamoci</h2>
+            <h2 class="text-4xl text-gray-900 dark:text-gray-300 pb-4">Incontriamoci</h2>
             {{-- <p class="leading-relaxed">ev.testo</p> --}}
             
             <div class="h-40 w-full">

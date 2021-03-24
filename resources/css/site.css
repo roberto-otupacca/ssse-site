@@ -146,7 +146,7 @@
 /* --------------------------------------------------- */
 /* Vieport per la galleria fotografica  in prima pagina*/
 /* --------------------------------------------------- */
-@media (min-width: 640px) { 
+/* @media (min-width: 640px) { 
   .flickity-viewport {
     height: 200px !important;
   }
@@ -170,7 +170,7 @@
   .flickity-viewport {
     height: 500px !important;
   }
-}
+} */
 
 /* Personalizzazione pulsante non visibile per carousel di prima pagina*/
 .flickity-button:disabled {

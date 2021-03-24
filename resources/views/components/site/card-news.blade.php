@@ -6,7 +6,7 @@
               
     <img src="{{$photoNews->first()->photo->first()->getUrl('preview')}}" alt="img" class="w-full object-cover h-32 sm:h-48 md:h-64">
     <div class="px-4 md:px-6 pt-4 md:pt-6 pb-2 md:pb-4">
-      <div class="h-24">
+      <div class="h-16 md:h-24">
         <p class="text-{{$color}} font-semibold text-xs xl:text-sm mb-1 leading-none">{{$categoryName}}&nbsp;</p>
         <h3 class="font-semibold mb-2 text-xl leading-tight sm:leading-normal ">
           <span class="line-clamp-2 group-link-underline">

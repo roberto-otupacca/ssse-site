@@ -9,13 +9,16 @@
             const tabs = document.querySelectorAll(".tabs");
             const tab = document.querySelectorAll(".tab");
             const panel = document.querySelectorAll(".tab-content");
-            const testActive = "text-gray-800";
-            // const testNoActive = "text-gray-500"; 
-            var testNoActive;
-            if (siteDarkMode) // costante valorizzata nello script della pagina blade
+            var testActive;
+            var testNoActive; 
+            
+            if (siteDarkMode == 1) {// costante valorizzata nello script della pagina blade
+              testActive = "text-gray-800";
               testNoActive = "dark:text-gray-500";
-            else
-              testNoActive = "text-gray-400";
+            } else {
+              testActive = "text-gray-800";
+              testNoActive = "text-gray-500";
+            }
 
             function onTabClick(event) {
 
@@ -23,7 +26,6 @@
                     tab[i].classList.remove("active");
                     tab[i].classList.remove(testActive);
                     tab[i].classList.add(testNoActive);
-                    
                 }
 
                 for (let i = 0; i < panel.length; i++) {

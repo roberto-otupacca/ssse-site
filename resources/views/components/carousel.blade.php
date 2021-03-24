@@ -19,7 +19,7 @@
       
         {{-- Ciclo per categoria news --}}
         @foreach($news->take(session('settings')->where('name', 'newsnumber')->firstWhere('val')->val)->groupBy('category_name') as $key => $listNews)
-            <div class="row-start-2 col-start-1"
+            <div class="row-start-2 col-start-1" 
                 x-show="active == {{$loop->index}}"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0 transform scale-90"
@@ -30,7 +30,7 @@
             >
                 <div class="grid grid-cols-1 grid-rows-1" x-data="carousel()" x-init="init()">
                 <div class="flex col-start-1 row-start-1 relative z-10 pointer-events-none
-                            justify-center mx-4 md:mx-12 mb-2 xl:mb-4 2xl:mb-6
+                            justify-center mx-4 md:mx-12 mb-2 xl:mb-4 2xl:mb-6 
                             items-end ">
                     {{-- Lista titoli di una categoria news--}}
                     @foreach($listNews as $n)
@@ -65,7 +65,7 @@
                     {{-- Lista immagini di una categoria--}}
                     @foreach($listNews as $n) 
                         <div class="w-3/5 px-2">
-                            <img src="{{$photoNews->where('slug', $n->slug)->first()->photo->first()->getUrl('preview')}}"
+                            <img src="{{$photoNews->where('slug', $n->slug)->first()->photo->first()->getUrl('preview')}}" 
                             loading="lazy" alt="{{$n->category_name . '- ' . $n->title}}">
                             {{-- <video src="{{asset('img/sss2.mp4')}}" poster="{{asset('img/poster3.png')}}" controls="" class="" loading="lazy"></video> --}}
                         </div>
@@ -77,7 +77,7 @@
     </div>
 </div>
 
-{{-- Categoria news --}}
+{{-- Gestione modali news --}}
 <div class="cursor-pointer ">
     @foreach($news->take(session('settings')->where('name', 'newsnumber')->firstWhere('val')->val)->groupBy('category_name') as $key => $listNews)
         {{-- Lista titoli di una categoria news--}}
@@ -87,7 +87,7 @@
                         id="modal{{($loop->parent->index) * 1000 + $loop->index}}" data-animation="slideInOutTop">
                 <div class="modal-dialog relative w-2/3 h-2/3 rounded bg-sssebackground dark:bg-sssebackground-dark
                             flex flex-col justify-between">
-                    <header class="bg-{{$n->css_name}}-light text-2xl text-black px-3 pb-3 pt-2 shadow-lg">
+                    <header class="bg-{{$n->css_name}}-light text-base md:text-2xl text-black px-3 pb-3 pt-2 shadow-lg">
                         {{-- {{$n->title}} --}}
                         {{-- {{\Carbon\Carbon::parse("2018-03-20")->formatLocalized('%d/%B/%Y')}} --}}
                         {{utf8_encode(\Carbon\Carbon::parse("2018-03-20")->formatLocalized('%A, %d %B %Y'))}}
@@ -102,7 +102,7 @@
                         </div>
                     </section>
 
-                    <footer class="group-link-underline bg-{{$n->css_name}}-light text-black p-3 shadow-xl">
+                    <footer class="group-link-underline bg-{{$n->css_name}}-light text-black p-3 shadow-xl text-sm md:text-base">
                         
                         <a class="pb-1 link-underline-black cursor-pointer float-right" 
                             href="{{url('notizia') . '/' . $n->slug}}"

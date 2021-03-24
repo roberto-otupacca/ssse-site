@@ -21,7 +21,7 @@
             data-aos-duration="1200"
             @endif
             >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -44,7 +44,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -65,7 +65,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -86,7 +86,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -107,7 +107,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -128,7 +128,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -149,7 +149,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -170,7 +170,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -191,7 +191,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -212,7 +212,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -233,7 +233,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">
@@ -254,7 +254,7 @@
               data-aos-duration="1200"
               @endif
               >
-        <div class="shadow-xl h-60 flex flex-col justify-center
+        <div class="shadow-xl h-52 md:h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">
           <div class=" px-4 py-6">

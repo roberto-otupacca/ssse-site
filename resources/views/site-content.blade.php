@@ -43,7 +43,7 @@
             <div class="flex flex-row items-center justify-center gap-6"> 
                 <div class=" cursor-pointer hover:shadow-xl hover:border-opacity-0 transform hover:-translate-y-2 transition-all duration-200 ">
                     <a href="{{url('/news') . '/' . $page->category_id }}" 
-                        class="p-3 bg-{{$page->css_name}}-light hover:bg-{{$page->css_name}} text-white">
+                        class="p-3 bg-{{$page->css_name}}-light hover:bg-{{$page->css_name}} text-white text-xs md:text-base line-clamp-1">
                             <i class="fas fa-chevron-left"></i>
                             @if(str_replace(url('/').'/', '', url()->previous()) == 'news')
                                 Torna alla pagina delle news
@@ -54,7 +54,7 @@
                 </div>
                 <div class=" cursor-pointer hover:shadow-xl hover:border-opacity-0 transform hover:-translate-y-2 transition-all duration-200 shadow-md ">
                     <a href="{{url('/notizia') . '/' . $pageNext->slug }}" 
-                        class="p-3 bg-{{$page->css_name}}-light hover:bg-{{$page->css_name}} text-white">
+                        class="p-3 bg-{{$page->css_name}}-light hover:bg-{{$page->css_name}} text-white text-xs md:text-base line-clamp-1">
                             Vai alla prossima news
                             <i class="fas fa-chevron-right"></i>
                     </a>
@@ -66,17 +66,20 @@
     {{-- Carosello con le foto se si è in una pagina di una news --}}
     @if(isset($photosCurrentNews) && $photosCurrentNews->count() > 0)
         <div class="p-4"></div>
-        <div class="carousel flickity-viewport" 
-             data-flickity='{ "lazyLoad": 2 {{$photosCurrentNews->first()->photo->count() == 1?', "prevNextButtons": false':''}} }'>
-            @foreach($photosCurrentNews as $photo)
-                @foreach($photo->photo as $key => $media)
-                <div class="carousel-cell  px-2 
-                    {{$photo->photo->count()<3?'w-max':'w-3/5'}}">
-                    <img data-flickity-lazyload="{{$media->getUrl('preview')}}">
-                    {{-- loading="lazy"> --}}
-                </div>
+        {{-- <div class="flickity-viewport"> --}}
+        <div class="" >
+            <div class="carousel"
+                data-flickity='{ "fullscreen": true, "lazyLoad": 2 {{$photosCurrentNews->first()->photo->count() == 1?', "prevNextButtons": false':''}} }'>
+                @foreach($photosCurrentNews as $photo)
+                    @foreach($photo->photo as $key => $media)
+                    <div class="carousel-cell  px-2 
+                        {{$photo->photo->count()<3?'w-max':'w-3/5'}}">
+                        <img data-flickity-lazyload="{{$media->getUrl('preview')}}">
+                        {{-- loading="lazy"> --}}
+                    </div>
+                    @endforeach
                 @endforeach
-            @endforeach
+            </div>
         </div>
         <div class="p-8"></div>
     @endif    
@@ -96,7 +99,7 @@
                             text-gray-800':'text-gray-400 dark:text-gray-500'}} pb-1 block 
                                 focus:outline-none  border-b-2 border-{{$categoryNews->first()->css_name}}
                                 mr-12 text-lg uppercase font-bold  line-clamp-1                
-                                hover:text-gray-800
+                                hover:text-gray-800 
                                 ">
                         {{$key}}
                     </button>
@@ -107,7 +110,7 @@
         <div id="panels">
             @foreach($news->groupBy('category_name') as $key => $categoryNews) 
                 <div class="panel-{{$loop->index}} {{$loop->first?'active block':'hidden'}} tab-content py-5">
-                    <div class="grid grid-cols-8 lg:grid-cols-12 gap-4">
+                    <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4">
                         @foreach($categoryNews as $n) 
                             <x-site.card-news dimension="dimension" :title="$n->title" :slug="$n->slug"  :text="$n->text" :dateStart="$n->date_start"
                                 :categoryId="$n->category_id" :color="$n->css_name" light="1" :categoryName="$n->category_name"/>
