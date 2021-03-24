@@ -1,8 +1,8 @@
 {{-- <x-menu /> --}}
 
-      <div class="bg-sssebackground-lightest dark:bg-sssebackground-darkest mt-0 fixed w-full z-30 top-0 ">
+      <div class="bg-sssebackground-lightest dark:bg-sssebackground-darkest mt-0 fixed w-full z-30 top-0 trigger-menu-wrapper menu-top">
         <nav class="container mx-auto">
-          <div class=" flex flex-wrap items-center px-4 md:px-0">
+          <div class=" flex flex-wrap items-center px-4 md:px-0"> 
             {{-- <div class="flex pl-3 lg:w-1/2 mx-auto lg:mx-0 text-white font-extrabold"> --}}
             <div class="flex pl-3 mx-auto text-white font-extrabold
                         {{intval(session('settings')->where('name', 'menurows')->where('val', '1')->count())?'lg:mx-0 lg:w-1/2':''}}">

@@ -79,7 +79,7 @@
                     </div>
                     @endforeach
                 @endforeach
-            </div>
+            </div>  
         </div>
         <div class="p-8"></div>
     @endif    

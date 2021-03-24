@@ -30,7 +30,10 @@
                     <i class="fas fa-handshake fa-4x"></i>
                 </div>
                 <h2>
-                  <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 link-underline-black">Contattaci</span>
+                  <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 
+                    {{(session('settings')->where('name', 'darkmode')->where('val', 'dark')->count())?'link-underline-white':'link-underline-black'}}">
+                      Contattaci
+                  </span>
                 </h2>
                 {{-- <p class="leading-relaxed">
                 ev.testo
@@ -57,7 +60,10 @@
                 <i class="fab fa-facebook-square fa-4x"></i>
               </div>
               <h2>
-                <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 link-underline-black">Facebook Us</span>
+                <span class="text-4xl text-gray-900 dark:text-gray-300 py-1 
+                    {{(session('settings')->where('name', 'darkmode')->where('val', 'dark')->count())?'link-underline-white':'link-underline-black'}}">
+                      Facebook Us
+                </span>
               </h2>
               {{-- <p class="leading-relaxed">ev. testo</p> --}}
             </div>

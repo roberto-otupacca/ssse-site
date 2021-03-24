@@ -19,14 +19,16 @@ mix.js('resources/js/app2.js', 'public/js')
 mix.styles( [   
             'public/css/app.css',
             'public/css/fontawesome.css',
-            'node_modules/flickity/dist/flickity.css', // Carousel in prima pagina
+            'node_modules/flickity/dist/flickity.css', // Carousel in prima pagina e news
+            'node_modules/flickity-fullscreen/fullscreen.css', // Fullscreen per Carousel
             'resources/css/site.css', // Css specifico per il sito (line-underline, ...)
             // 'node_modules/aos/dist/aos.css', // Animazioni card, ecc.
 ], 'public/css/all.css');
 
 mix.scripts([
             'public/js/app.js',
-            'node_modules/flickity/dist/flickity.pkgd.js', // Carousel in prima pagina
+            'node_modules/flickity/dist/flickity.pkgd.js', // Carousel in prima pagina e news
+            'node_modules/flickity-fullscreen/fullscreen.js', // Fullscreen per Carousel
             'resources/js/site.js', // Javascript specifico per il sito (carousel, ...)
 ], 'public/js/all.js');
 

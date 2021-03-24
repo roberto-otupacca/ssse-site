@@ -213,6 +213,5 @@
         {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
         <script src="{{ asset('js/all.js') }}"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc6ho3RWGGhLU1hYm9dv5slAZIIw__sd0&callback=initMap&libraries=&v=weekly" async></script>
-
     </body>
 </html>

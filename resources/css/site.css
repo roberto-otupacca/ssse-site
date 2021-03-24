@@ -85,7 +85,7 @@
   background-size:100% 3px,0 3px;
   background-position:100% 100%,0 100%;
   background-repeat:no-repeat;
-  transition:background-size .2s ease-in-out,background-position .3s ease-in-out
+  transition:background-size .3s ease-in-out,background-position .3s ease-in-out
 }
 
 .group-link-underline:hover a.link-underline, 
@@ -101,7 +101,7 @@
   background-size:100% 3px,0 3px;
   background-position:100% 100%,0 100%;
   background-repeat:no-repeat;
-  transition:background-size .2s ease-in-out,background-position .3s ease-in-out
+  transition:background-size .3s ease-in-out,background-position .3s ease-in-out
 }
 
 .group-link-underline:hover a.link-underline-white,
@@ -118,7 +118,7 @@
   background-size:100% 3px,0 3px;
   background-position:100% 100%,0 100%;
   background-repeat:no-repeat;
-  transition:background-size .2s ease-in-out,background-position .3s ease-in-out
+  transition:background-size .3s ease-in-out,background-position .3s ease-in-out
 }
 
 .group-link-underline:hover a.link-underline-black,
@@ -134,7 +134,7 @@
   background-size:100% 3px,0 3px;
   background-position:100% 100%,0 100%;
   background-repeat:no-repeat;
-  transition:background-size .2s ease-in-out,background-position .3s ease-in-out
+  transition:background-size .3s ease-in-out,background-position .3s ease-in-out
 }
 
 .group-link-underline:hover a.link-underline-colored,
@@ -211,6 +211,39 @@
 [data-animation="slideInOutTop"].is-visible .modal-dialog,
 [data-animation="zoomInOut"].is-visible .modal-dialog {
   transform: none;
+}
+
+/*––––––––––––––––––––------------------------------------
+   Gestione menu a scomparsa quando si è in formato mobile
+----------------------------------------------------------*/
+@media (min-width: 240px) { 
+    .trigger-menu-wrapper {   
+        transition: transform 0.4s;
+    }
+    .scroll-down .trigger-menu-wrapper {
+        transform: translate3d(0, -100%, 0);
+    }
+    .scroll-up .trigger-menu-wrapper {
+        transform: none;
+    }
+}
+@media (min-width: 768px) { 
+    .trigger-menu-wrapper {   
+        transform: none;
+    }
+    .scroll-down .trigger-menu-wrapper {
+        transform: none;
+    }
+    .scroll-up .trigger-menu-wrapper {
+        transform: none;
+    }
+}
+/*––––––––––––––––––––----------------------
+   Gestione centratura news a tutto schermo
+  ------------------------------------------*/
+.carousel.is-fullscreen  {
+    z-index:999;
+    padding-top: 5%;
 }
 
     
