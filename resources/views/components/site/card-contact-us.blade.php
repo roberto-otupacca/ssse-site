@@ -14,12 +14,9 @@
     <div class="flex flex-wrap -m-4 text-center">
          
       <div class="group-link-underline p-4 w-full lg:w-1/3"
-      @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count())
               data-aos="fade-up" 
               {{-- data-aos-anchor-placement="top-bottom" --}}
-              data-aos-duration="1200"
-              @endif
-              >
+              data-aos-duration="1200">
         <a href="{{url('/contatti')}}">
           <div class="shadow-xl h-48 lg:h-60 flex flex-col justify-center
                     text-gray-500 dark:text-gray-300
@@ -45,12 +42,9 @@
       </div>
 
       <div class="group-link-underline p-4 w-full lg:w-1/3"
-      @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count())
               data-aos="fade-up" 
               {{-- data-aos-anchor-placement="top-bottom" --}}
-              data-aos-duration="1200"
-              @endif
-              >
+              data-aos-duration="1200">
         <a href="https://www.facebook.com/ssse.bellinzona" target="_blank">
           <div class="shadow-xl h-48 lg:h-60 flex flex-col justify-center
                     text-gray-500 dark:text-gray-300
@@ -74,12 +68,9 @@
 
       
       <div class="p-4 w-full lg:w-1/3" 
-              @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count())
               data-aos="fade-up" 
               {{-- data-aos-anchor-placement="top-bottom" --}}
-              data-aos-duration="1200"
-              @endif
-              >
+              data-aos-duration="1200">
         <div class="shadow-xl h-60 flex flex-col justify-center
                   text-gray-500 dark:text-gray-300
                   bg-white dark:bg-sssebackground-darkest">

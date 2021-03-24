@@ -1,6 +1,6 @@
 {{-- <x-site.card-statistics title="Titolo" dimension="dim" :link="$link" :color="$color" :light="$light"/> --}}
-<section class="text-gray-600 pt-24 body-font 
-  @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count()) pb-10 @endif">
+<section class="text-gray-600 body-font 
+  {{(session('settings')->where('name', 'statposition')->where('val', 'down')->count())? 'pb-10 pt-14': 'pt-24'}}">
   <div class="container mx-auto px-5">
     
     @if(session('settings')->where('name', 'statposition')->where('val', 'down')->count())
@@ -73,7 +73,7 @@
               <i class="fas fa-user-graduate fa-3x"></i>
             </div>
             <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+500</h2>
-            <p class="leading-relaxed">Il totale dei diplomati inseriti nel mondo del lavoro ticinese e internazionale</p>
+            <p class="leading-relaxed">Il totale dei diplomati SSSE inseriti nel mondo del lavoro ticinese e internazionale</p>
           </div>
         </div>
         <div class="h-5 bg-sssegreen text-xs text-white">SSSE - Scuola Specializzata superiore di economia</div>
@@ -94,7 +94,7 @@
               <i class="fas fa-user-tie fa-3x"></i>
             </div>
             <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">&#x7e;50%</h2>
-            <p class="leading-relaxed">Sono i diplomati in informatica di gestione che nell'azienda in cui svolgono lo stage trovano immediatamente il primo impiego</p>
+            <p class="leading-relaxed">Sono i diplomati in informatica di gestione che trovano immediatamente il primo impiego nell'azienda in cui svolgono lo stage</p>
           </div>
         </div>
         <div class="h-5 bg-sigred text-xs text-white">SIG - Sezione di Informatica di Gestione</div>
@@ -261,8 +261,8 @@
             <div class="text-sigred w-12 h-12 mb-3 inline-block">
               <i class="fas fa-business-time fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+85%</h2>
-            <p class="leading-relaxed">Sono i diplomati in informatica di gestione trovano lavoro in meno di un anno</p>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+80%</h2>
+            <p class="leading-relaxed">Sono i diplomati in informatica di gestione trovano lavoro in meno di sei mesi nel campo dei loro studi</p>
           </div>
         </div>
         <div class="h-5 bg-sigred text-xs text-white">SIG - Sezione di Informatica di Gestione</div>
