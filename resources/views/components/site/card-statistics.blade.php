@@ -72,7 +72,9 @@
             <div class="text-sssegreen w-12 h-12 mb-3 inline-block">
               <i class="fas fa-user-graduate fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+500</h2>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">
+              +{{(Carbon\Carbon::now()->year-1993)*20+(Carbon\Carbon::now()->year-2009)*10}}
+            </h2>
             <p class="leading-relaxed">Il totale dei diplomati SSSE inseriti nel mondo del lavoro ticinese e internazionale</p>
           </div>
         </div>
@@ -114,8 +116,8 @@
             <div class="text-sssegreen w-12 h-12 mb-3 inline-block">
               <i class="fas fa-chalkboard-teacher fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+12</h2>
-            <p class="leading-relaxed">Sono gli anni di esperienza maturati nel blended learning</p>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">{{Carbon\Carbon::now()->year-2007}}</h2>
+            <p class="leading-relaxed">Sono gli anni di esperienza maturati nella formazione a distanza</p>
           </div>
         </div>
         <div class="h-5 bg-sssegreen text-xs text-white">SSSE - Scuola Specializzata superiore di economia</div>
@@ -135,7 +137,9 @@
             <div class="text-sssegreen w-12 h-12 mb-3 inline-block">
               <i class="fas fa-city fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+250</h2>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">
+              +{{(Carbon\Carbon::now()->year-1993)*10+(Carbon\Carbon::now()->year-2009)*10}}
+            </h2>
             <p class="leading-relaxed">Sono le aziende coinvolte negli stage della scuola</p>
           </div>
         </div>
@@ -156,7 +160,7 @@
             <div class="text-sigred w-12 h-12 mb-3 inline-block">
               <i class="fas fa-university fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+35</h2>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+{{Carbon\Carbon::now()->year-1993}}</h2>
             <p class="leading-relaxed">Gli anni di esperienza muturati nel formare Informatici di gestione</p>
           </div>
         </div>
@@ -177,7 +181,7 @@
             <div class="text-seablue w-12 h-12 mb-3 inline-block">
               <i class="fas fa-university fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+10</h2>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+{{Carbon\Carbon::now()->year-2009}}</h2>
             <p class="leading-relaxed">Gli anni di esperienza muturati nel formare Economisti aziendali</p>
           </div>
         </div>
@@ -240,7 +244,7 @@
             <div class="text-seablue w-12 h-12 mb-3 inline-block">
               <i class="fas fa-random fa-3x"></i>
             </div>
-            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">+</h2>
+            <h2 class="text-5xl text-gray-900 dark:text-gray-300 py-1">>>></h2>
             <p class="leading-relaxed">I diplomati in economia aziendale si possono perfezionare come contabili federali o controller o tramite corsi universitari</p>
           </div>
         </div>
