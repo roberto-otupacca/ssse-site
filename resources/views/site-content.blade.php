@@ -109,7 +109,7 @@
         @endif
         <div id="panels">
             @foreach($news->groupBy('category_name') as $key => $categoryNews) 
-                <div class="panel-{{$loop->index}} {{$loop->first?'active block':'hidden'}} tab-content py-5">
+                <div class="panel-{{$loop->index}} {{($categoryNews->first()->category_id == $category)||($category==0 && $loop->first)?'active block':'hidden'}} tab-content py-5">
                     <div class="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-4">
                         @foreach($categoryNews as $n) 
                             <x-site.card-news dimension="dimension" :title="$n->title" :slug="$n->slug"  :text="$n->text" :dateStart="$n->date_start"
