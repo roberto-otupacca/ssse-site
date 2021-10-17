@@ -10,7 +10,7 @@
     <ul class="c-sidebar-nav">
         @can('page_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.pages.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/pages") || request()->is("admin/pages/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.pages.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/pages") || request()->is("admin/pages/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw far fa-file-alt c-sidebar-nav-icon">
 
                     </i>
@@ -20,7 +20,7 @@
         @endcan
         @can('news_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.news.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/news") || request()->is("admin/news/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.news.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/news") || request()->is("admin/news/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw far fa-newspaper c-sidebar-nav-icon">
 
                     </i>
@@ -30,7 +30,7 @@
         @endcan
         @can('file_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.files.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/files") || request()->is("admin/files/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.files.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/files") || request()->is("admin/files/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw fas fa-file-upload c-sidebar-nav-icon">
 
                     </i>
@@ -40,7 +40,7 @@
         @endcan
         @can('link_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.links.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/links") || request()->is("admin/links/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.links.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/links") || request()->is("admin/links/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw fas fa-link c-sidebar-nav-icon">
 
                     </i>
@@ -50,7 +50,7 @@
         @endcan
         @can('category_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/categories") || request()->is("admin/categories/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/categories") || request()->is("admin/categories/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw fas fa-cubes c-sidebar-nav-icon">
 
                     </i>
@@ -60,7 +60,7 @@
         @endcan
         @can('color_access')
             <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.colors.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/colors") || request()->is("admin/colors/*") ? "c-active" : "" }}">
+                <a href="{{ route("admin.colors.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/colors") || request()->is("admin/colors/*") ? "c-active" : "" }}" rel="noreferrer">
                     <i class="fa-fw fas fa-palette c-sidebar-nav-icon">
 
                     </i>
@@ -79,7 +79,7 @@
                 <ul class="c-sidebar-nav-dropdown-items">
                     @can('user_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.users.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/users") || request()->is("admin/users/*") ? "c-active" : "" }}">
+                            <a href="{{ route("admin.users.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/users") || request()->is("admin/users/*") ? "c-active" : "" }}" rel="noreferrer">
                                 <i class="fa-fw fas fa-user c-sidebar-nav-icon">
 
                                 </i>
@@ -89,7 +89,7 @@
                     @endcan
                     @can('role_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.roles.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/roles") || request()->is("admin/roles/*") ? "c-active" : "" }}">
+                            <a href="{{ route("admin.roles.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/roles") || request()->is("admin/roles/*") ? "c-active" : "" }}" rel="noreferrer">
                                 <i class="fa-fw fas fa-briefcase c-sidebar-nav-icon">
 
                                 </i>
@@ -99,7 +99,7 @@
                     @endcan
                     @can('permission_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.permissions.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/permissions") || request()->is("admin/permissions/*") ? "c-active" : "" }}">
+                            <a href="{{ route("admin.permissions.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/permissions") || request()->is("admin/permissions/*") ? "c-active" : "" }}" rel="noreferrer">
                                 <i class="fa-fw fas fa-unlock-alt c-sidebar-nav-icon">
 
                                 </i>
@@ -122,7 +122,7 @@
             @endcan
         @endif
         <li class="c-sidebar-nav-item">
-            <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
+            <a href="#" class="c-sidebar-nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" rel="noreferrer">
                 <i class="c-sidebar-nav-icon fas fa-fw fa-power-off">
                 </i>
                 {{ trans('global.logout') }}

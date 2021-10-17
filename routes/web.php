@@ -71,7 +71,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 });
 
 
-Route::group(['middleware' => ['auth']], function () {
+// Route::group(['middleware' => ['auth']], function () {
     Route::get('/welcome', function () {
         return view('welcome');
     });
@@ -83,4 +83,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/notizia/{slug}', 'SiteController@news')->name('site-one-news');
     Route::get('/news/{slug}', 'SiteController@index')->name('site-news');
     Route::get('/{slug?}', 'SiteController@index')->name('site');
-});
+// });
