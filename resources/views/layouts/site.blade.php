@@ -12,12 +12,12 @@
                  font-src {{url('/')}} https://fonts.googleapis.com  https://fonts.gstatic.com 'unsafe-inline'; "> --}}
 
         {{-- Metadati per prevenire script cross-site, clickjacking e altri attacchi di iniezione di codice (maps javascript)--}}
-        <meta http-equiv="Content-Security-Policy"
-                content="default-src 'self' {{url('/')}} https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval' 'strict-dynamic';
-                        img-src 'self' https://maps.googleapis.com  https://maps.gstatic.com data:;
-                        style-src {{url('/')}} https://fonts.googleapis.com 'unsafe-inline';
-                        font-src {{url('/')}} https://fonts.googleapis.com  https://fonts.gstatic.com 'unsafe-inline';
-                        script-src 'self' https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';">
+{{--        <meta http-equiv="Content-Security-Policy"--}}
+{{--                content="default-src 'self' {{url('/')}} https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval' 'strict-dynamic';--}}
+{{--                        img-src 'self' https://maps.googleapis.com  https://maps.gstatic.com data:;--}}
+{{--                        style-src {{url('/')}} https://fonts.googleapis.com 'unsafe-inline';--}}
+{{--                        font-src {{url('/')}} https://fonts.googleapis.com  https://fonts.gstatic.com 'unsafe-inline';--}}
+{{--                        script-src 'self' https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';">--}}
 
         <meta name="google" content="notranslate" />
 
